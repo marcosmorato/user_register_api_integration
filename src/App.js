@@ -4,12 +4,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <header className="App-header"></header>
     </div>
   );
-}
+};
 
 export default App;
