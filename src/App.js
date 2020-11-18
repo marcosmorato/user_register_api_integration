@@ -7,7 +7,20 @@ import * as yup from "yup";
 const App = () => {
   return (
     <div className="App">
-      <header className="App-header"></header>
+      <header className="App-header">
+        <ul>
+          <li>
+            <Link to="/">Login</Link>
+          </li>
+          <li>
+            <Link to="/register">Cadastro</Link>
+          </li>
+        </ul>
+        <Switch>
+          <Route path="/register"></Route>
+          <Route path="/"></Route>
+        </Switch>
+      </header>
     </div>
   );
 };
