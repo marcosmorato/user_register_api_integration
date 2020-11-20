@@ -1,14 +1,18 @@
+import axios from "axios";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const Register = ({ registerStorage, setRegister }) => {
+const Register = (git) => {
+  const history = useHistory();
+
   const schema = yup.object().shape({
     name: yup
       .string()
       .min(3, "O nome deve conter no mínimo 3 letras")
       .required("Campo obrigatorio"),
-    username: yup.string().required("Campo obrigatório"),
+    user: yup.string().required("Campo obrigatório"),
     email: yup.string().email("email invalido").required("Campo obrigatório"),
     password: yup
       .string()
@@ -18,7 +22,7 @@ const Register = ({ registerStorage, setRegister }) => {
         "Senha deve conter: pelomenos 1 letra maiuscula, 1 letra minuscula, 1 caractere especial e 1 número"
       )
       .required("Campo obrigatório"),
-    confirmPassword: yup
+    password_confirmation: yup
       .string()
       .oneOf([yup.ref("password")], "A senha deve ser igual"),
   });
@@ -28,9 +32,13 @@ const Register = ({ registerStorage, setRegister }) => {
   });
 
   const handleForm = (data) => {
-    setRegister(!registerStorage);
     console.log(data);
-    console.log(registerStorage);
+    axios
+      .post("https://ka-users-api.herokuapp.com/users", { user: data })
+      .then((res) => {
+        console.log(res);
+        history.push("/login");
+      });
   };
 
   return (
@@ -49,10 +57,10 @@ const Register = ({ registerStorage, setRegister }) => {
           <span>Usuario:</span>
           <input
             placeholder="What's your username?"
-            name="username"
+            name="user"
             ref={register}
           ></input>
-          <p style={{ color: "red" }}>{errors.username?.message}</p>
+          <p style={{ color: "red" }}>{errors.user?.message}</p>
         </div>
         <div>
           <span>Email:</span>
@@ -76,10 +84,12 @@ const Register = ({ registerStorage, setRegister }) => {
           <span>Confirme sua senha:</span>
           <input
             placeholder="confirm your password"
-            name="confirmPassword"
+            name="password_confirmation"
             ref={register}
           ></input>
-          <p style={{ color: "red" }}>{errors.confirmPassword?.message}</p>
+          <p style={{ color: "red" }}>
+            {errors.password_confirmation?.message}
+          </p>
         </div>
         <div>
           <button type="submit">Manda bala</button>
