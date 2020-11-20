@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const Register = (git) => {
+const Register = () => {
   const history = useHistory();
 
   const schema = yup.object().shape({
