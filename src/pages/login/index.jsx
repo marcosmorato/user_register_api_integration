@@ -1,10 +1,11 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
 import { Link } from "react-router-dom";
 
 const Login = ({ login, setLocalStorage }) => {
+  const a = login.length;
+
   const schema = yup.object().shape({
     username: yup.string().required("Campo obrigatório"),
     password: yup
