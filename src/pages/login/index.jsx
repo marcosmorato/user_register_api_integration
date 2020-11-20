@@ -1,10 +1,13 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Link } from "react-router-dom";
-import axios from "axios";
 
-const Login = () => {
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+
+const Login = (props) => {
+  const history = useHistory();
+
   const schema = yup.object().shape({
     user: yup.string().required("Campo obrigatório"),
     password: yup
@@ -17,7 +20,7 @@ const Login = () => {
       .required("Campo obrigatório"),
   });
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, setError } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -28,7 +31,15 @@ const Login = () => {
       .post("https://ka-users-api.herokuapp.com/authenticate", { ...data })
       .then((res) => {
         console.log(res);
-      });
+        window.localStorage.setItem("authToken", res.data.auth_token);
+        props.setAuth(true);
+        history.push("/membersArea");
+      })
+      .catch((err) =>
+        setError("user", {
+          message: err.response.data.error.user_authentication,
+        })
+      );
   };
 
   return (
