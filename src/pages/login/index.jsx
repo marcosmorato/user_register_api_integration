@@ -2,12 +2,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-const Login = ({ login, setLocalStorage }) => {
-  const a = login.length;
-
+const Login = () => {
   const schema = yup.object().shape({
-    username: yup.string().required("Campo obrigatório"),
+    user: yup.string().required("Campo obrigatório"),
     password: yup
       .string()
       .min(8, "Senha deve conter no mínimo 8 dígitos")
@@ -24,9 +23,12 @@ const Login = ({ login, setLocalStorage }) => {
 
   //validar API aqui, testar se ja tem cadastro
   const handleForm = (data) => {
-    setLocalStorage(!login);
     console.log(data);
-    console.log(login);
+    axios
+      .post("https://ka-users-api.herokuapp.com/authenticate", { ...data })
+      .then((res) => {
+        console.log(res);
+      });
   };
 
   return (
@@ -36,10 +38,10 @@ const Login = ({ login, setLocalStorage }) => {
           <span> Usuario: </span>
           <input
             placeholder="What's your username?"
-            name="username"
+            name="user"
             ref={register}
           ></input>
-          <p style={{ color: "red" }}>{errors.username?.message}</p>
+          <p style={{ color: "red" }}>{errors.user?.message}</p>
         </div>
 
         <div>
