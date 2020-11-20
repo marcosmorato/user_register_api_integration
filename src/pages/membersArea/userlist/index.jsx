@@ -1,5 +1,5 @@
 const UserList = () => {
-  return <>teste</>;
+  return <div>Gabriel é um Genio</div>;
 };
 
 export default UserList;
