@@ -3,7 +3,7 @@ import { Route, Switch, Link, useHistory } from "react-router-dom";
 
 import Login from "../../pages/login";
 import Register from "../../pages/register";
-import MembersArea from "../../pages/membersArea";
+import MembersArea from "../../pages/users";
 import axios from "axios";
 
 const Authenticator = () => {
@@ -22,7 +22,7 @@ const Authenticator = () => {
       })
       .then((res) => {
         setAuth(true);
-        history.push("/membersArea");
+        history.push("/users");
       })
       .catch(() => {
         setAuth(false);
@@ -60,7 +60,7 @@ const Authenticator = () => {
       <Route exact path="/">
         <Login setAuth={setAuth}></Login>
       </Route>
-      <Route path="/membersArea">
+      <Route path="/users">
         <MembersArea />
       </Route>
     </Switch>
