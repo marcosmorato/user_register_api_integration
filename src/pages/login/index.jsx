@@ -33,7 +33,7 @@ const Login = (props) => {
         console.log(res);
         window.localStorage.setItem("authToken", res.data.auth_token);
         props.setAuth(true);
-        history.push("/membersArea");
+        history.push("/users");
       })
       .catch((err) =>
         setError("user", {
