@@ -61,6 +61,7 @@ const Login = (props) => {
           <input
             placeholder="put your password"
             name="password"
+            type="password"
             ref={register}
           ></input>
           <p style={{ color: "red" }}>{errors.password?.message}</p>

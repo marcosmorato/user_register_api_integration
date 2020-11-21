@@ -1,26 +1,37 @@
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+import FeedbackList from "../../components/feedbackList";
 
 const Feedback = () => {
-  let { userId } = useParams();
+  const { userId } = useParams();
+  const [feedbackList, setFeedbackList] = useState([]);
+  const token = window.localStorage.getItem("authToken");
+  const history = useHistory();
 
-  const getFeedback = () => {
-    const token = window.localStorage.getItem("authToken");
+  const newFeedback = () => {
+    history.push(`/users/${userId}/feedbacks/new`);
+  };
 
+  useEffect(() => {
     axios
       .get(`https://ka-users-api.herokuapp.com/users/${userId}/feedbacks`, {
         headers: { Authorization: token },
       })
       .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => err.response.data.error);
-  };
+        setFeedbackList(res.data.sort((a, b) => a.id - b.id));
+      });
+  }, []);
 
   return (
     <>
-      <div>Feedbacks</div>
-      <button onClick={getFeedback}>Get</button>
+      {feedbackList.length === 0 ? (
+        <div>No data</div>
+      ) : (
+        <FeedbackList list={feedbackList} />
+      )}
+
+      <button onClick={newFeedback}>New feedback</button>
     </>
   );
 };

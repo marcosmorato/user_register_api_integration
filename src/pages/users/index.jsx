@@ -4,6 +4,7 @@ import axios from "axios";
 
 import UserList from "../../components/userList";
 import Feedback from "../feedbacks";
+import NewFeedback from "../newFeedbacks";
 
 const MembersArea = () => {
   const [userList, setUserList] = useState([]);
@@ -17,12 +18,14 @@ const MembersArea = () => {
       .then((res) => setUserList(res.data.sort((a, b) => a.id - b.id)));
   }, []);
 
-  console.log(userList);
   return (
     <>
       <Link to="/users">Users</Link>
 
       <Switch>
+        <Route path="/users/:userId/feedbacks/new">
+          <NewFeedback />
+        </Route>
         <Route path="/users/:userId/feedbacks">
           <Feedback />
         </Route>
