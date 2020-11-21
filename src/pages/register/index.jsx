@@ -32,7 +32,6 @@ const Register = () => {
   });
 
   const handleForm = (data) => {
-    console.log(data);
     axios
       .post("https://ka-users-api.herokuapp.com/users", { user: data })
       .then((res) => {
