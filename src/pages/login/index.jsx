@@ -36,7 +36,7 @@ const Login = (props) => {
         history.push("/users");
       })
       .catch((err) =>
-        setError("user", {
+        setError("user_authentication", {
           message: err.response.data.error.user_authentication,
         })
       );
@@ -67,6 +67,7 @@ const Login = (props) => {
           <p style={{ color: "red" }}>{errors.password?.message}</p>
         </div>
         <div>
+          <p style={{ color: "red" }}>{errors.user_authentication?.message}</p>
           <button type="submit">Manda bala</button>
         </div>
       </form>

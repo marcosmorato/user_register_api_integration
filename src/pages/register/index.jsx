@@ -27,7 +27,7 @@ const Register = () => {
       .oneOf([yup.ref("password")], "A senha deve ser igual"),
   });
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, setError } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -37,7 +37,12 @@ const Register = () => {
       .then((res) => {
         console.log(res);
         history.push("/login");
-      });
+      })
+      .catch((err) =>
+        setError("user_register", {
+          message: "email ou usuário ja existentes",
+        })
+      );
   };
 
   return (
@@ -91,6 +96,7 @@ const Register = () => {
           </p>
         </div>
         <div>
+          <p style={{ color: "red" }}>{errors.user_register?.message}</p>
           <button type="submit">Manda bala</button>
         </div>
       </form>
