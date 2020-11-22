@@ -5,6 +5,7 @@ import axios from "axios";
 import UserList from "../../components/userList";
 import Feedback from "../feedbacks";
 import NewFeedback from "../newFeedbacks";
+import Logout from "../../components/buttonLogout";
 
 const MembersArea = () => {
   const [userList, setUserList] = useState([]);
@@ -20,8 +21,14 @@ const MembersArea = () => {
 
   return (
     <>
-      <Link to="/users">Users</Link>
-
+      <ul>
+        <li>
+          <Link to="/users">Users</Link>
+        </li>
+        <li>
+          <Logout />
+        </li>
+      </ul>
       <Switch>
         <Route path="/users/:userId/feedbacks/new">
           <NewFeedback />
