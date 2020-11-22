@@ -35,7 +35,6 @@ const Register = () => {
     axios
       .post("https://ka-users-api.herokuapp.com/users", { user: data })
       .then((res) => {
-        console.log(res);
         history.push("/login");
       })
       .catch((err) =>

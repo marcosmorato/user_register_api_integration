@@ -34,7 +34,6 @@ const NewFeedbacks = () => {
         }
       )
       .then((res) => {
-        console.log(res);
         history.push(`/users/${userId}/feedbacks`);
       });
   };
@@ -73,6 +72,9 @@ const NewFeedbacks = () => {
 
         <button type="submit">enviar</button>
       </form>
+      <button onClick={() => history.push(`/users/${userId}/feedbacks`)}>
+        Go back
+      </button>
     </>
   );
 };

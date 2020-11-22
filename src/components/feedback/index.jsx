@@ -1,6 +1,4 @@
 const Feedback = (props) => {
-  console.log(props.creator);
-
   return (
     <div>
       <span>{props.id} </span>
