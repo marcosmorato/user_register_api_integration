@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Route, Switch, Link, useHistory } from "react-router-dom";
-
 import Login from "../../pages/login";
 import Register from "../../pages/register";
 import MembersArea from "../../pages/users";
@@ -54,7 +53,6 @@ const Authenticator = () => {
       </>
     );
   }
-
   return (
     <Switch>
       <Route exact path="/">

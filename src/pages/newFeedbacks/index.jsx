@@ -8,7 +8,6 @@ const NewFeedbacks = () => {
   const { userId } = useParams();
   const history = useHistory();
   const token = window.localStorage.getItem("authToken");
-
   const schema = yup.object().shape({
     name: yup
       .string()
@@ -37,7 +36,6 @@ const NewFeedbacks = () => {
         history.push(`/users/${userId}/feedbacks`);
       });
   };
-
   return (
     <>
       <form onSubmit={handleSubmit(handleForm)}>
@@ -69,7 +67,6 @@ const NewFeedbacks = () => {
           ></input>
           <p style={{ color: "red" }}>{errors.grade?.message}</p>
         </div>
-
         <button type="submit">enviar</button>
       </form>
       <button onClick={() => history.push(`/users/${userId}/feedbacks`)}>

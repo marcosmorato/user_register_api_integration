@@ -2,15 +2,12 @@ import { useHistory, useParams } from "react-router-dom";
 
 const User = (props) => {
   const history = useHistory();
-
   const getFeedback = () => {
     history.push(`/users/${props.id}/feedbacks`);
   };
-
   const newFeedback = () => {
     history.push(`/users/${props.id}/feedbacks/new`);
   };
-
   return (
     <div>
       <span> {props.id} </span>

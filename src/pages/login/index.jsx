@@ -1,13 +1,11 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 const Login = (props) => {
   const history = useHistory();
-
   const schema = yup.object().shape({
     user: yup.string().required("Campo obrigatório"),
     password: yup
@@ -19,12 +17,9 @@ const Login = (props) => {
       )
       .required("Campo obrigatório"),
   });
-
   const { register, handleSubmit, errors, setError } = useForm({
     resolver: yupResolver(schema),
   });
-
-  //validar API aqui, testar se ja tem cadastro
   const handleForm = (data) => {
     axios
       .post("https://ka-users-api.herokuapp.com/authenticate", { ...data })
@@ -40,7 +35,6 @@ const Login = (props) => {
         })
       );
   };
-
   return (
     <div>
       <form onSubmit={handleSubmit(handleForm)}>
@@ -53,10 +47,8 @@ const Login = (props) => {
           ></input>
           <p style={{ color: "red" }}>{errors.user?.message}</p>
         </div>
-
         <div>
           <span> Senha: </span>
-
           <input
             placeholder="put your password"
             name="password"

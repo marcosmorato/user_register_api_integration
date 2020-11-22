@@ -8,11 +8,9 @@ const Feedback = () => {
   const [feedbackList, setFeedbackList] = useState([]);
   const token = window.localStorage.getItem("authToken");
   const history = useHistory();
-
   const newFeedback = () => {
     history.push(`/users/${userId}/feedbacks/new`);
   };
-
   useEffect(() => {
     axios
       .get(`https://ka-users-api.herokuapp.com/users/${userId}/feedbacks`, {
@@ -22,7 +20,6 @@ const Feedback = () => {
         setFeedbackList(res.data.sort((a, b) => a.id - b.id));
       });
   }, []);
-
   return (
     <>
       {feedbackList.length === 0 ? (
@@ -37,7 +34,3 @@ const Feedback = () => {
 };
 
 export default Feedback;
-
-// ter um map que passe por todos os usuarios
-// ter um find que localzia o id clicado
-//

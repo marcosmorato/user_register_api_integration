@@ -6,7 +6,6 @@ import * as yup from "yup";
 
 const Register = () => {
   const history = useHistory();
-
   const schema = yup.object().shape({
     name: yup
       .string()
@@ -26,11 +25,9 @@ const Register = () => {
       .string()
       .oneOf([yup.ref("password")], "A senha deve ser igual"),
   });
-
   const { register, handleSubmit, errors, setError } = useForm({
     resolver: yupResolver(schema),
   });
-
   const handleForm = (data) => {
     axios
       .post("https://ka-users-api.herokuapp.com/users", { user: data })
@@ -43,7 +40,6 @@ const Register = () => {
         })
       );
   };
-
   return (
     <div>
       <form onSubmit={handleSubmit(handleForm)}>
