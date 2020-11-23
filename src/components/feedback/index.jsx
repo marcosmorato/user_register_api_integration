@@ -1,21 +1,21 @@
 const Feedback = (props) => {
   return (
-    <div>
-      <span>{props.id} </span>
-      <span> {props.name} </span>
-      <span> {props.comment} </span>
+    <>
+      <td>{props.id} </td>
+      <td> {props.name} </td>
+      <td> {props.comment} </td>
       {props.creator ? (
-        <span> {props.creator.name} </span>
+        <td> {props.creator.name} </td>
       ) : (
         <div>my creator don't have name</div>
       )}
       {props.creator ? (
-        <span> {props.creator.user} </span>
+        <td> {props.creator.user} </td>
       ) : (
         <div>my creator don't have name</div>
       )}
-      <span> {props.grade} </span>
-    </div>
+      <td> {props.grade} </td>
+    </>
   );
 };
 

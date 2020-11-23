@@ -12,22 +12,18 @@ const User = (props) => {
     history.push(`/users/${props.id}/feedbacks/new`);
   };
   return (
-    <div>
-      <tbody>
-        <tr>
-          <td style={{ width: 100 }}> {props.id} </td>
-          <td style={{ width: 350 }}> {props.name} </td>
-          <td style={{ width: 400 }}> {props.user} </td>
-          <td style={{ width: 400 }}> {props.email} </td>
-          <td style={{ width: 100 }}>
-            <button onClick={getFeedback}>Go to feedback</button>
-          </td>
-          <td style={{ width: 100 }}>
-            <button onClick={newFeedback}>New feedback</button>
-          </td>
-        </tr>
-      </tbody>
-    </div>
+    <>
+      <td> {props.id} </td>
+      <td> {props.name} </td>
+      <td> {props.user} </td>
+      <td> {props.email} </td>
+      <td>
+        <button onClick={getFeedback}>Go to feedback</button>
+      </td>
+      <td>
+        <button onClick={newFeedback}>New feedback</button>
+      </td>
+    </>
   );
 };
 
