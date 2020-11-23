@@ -4,6 +4,7 @@ import Login from "../../pages/login";
 import Register from "../../pages/register";
 import MembersArea from "../../pages/users";
 import axios from "axios";
+import { Container, Navigation } from "./styled";
 
 const Authenticator = () => {
   const [isAuth, setAuth] = useState(undefined);
@@ -33,15 +34,22 @@ const Authenticator = () => {
   }
   if (isAuth === false) {
     return (
-      <>
-        <ul>
-          <li>
-            <Link to="/register">Cadastro</Link>
-          </li>
-          <li>
-            <Link to="/">Login</Link>
-          </li>
-        </ul>
+      <Container>
+        <Navigation>
+          <div>
+            <Link
+              style={{ textDecoration: "none", color: "white" }}
+              to="/register"
+            >
+              Cadastro
+            </Link>
+          </div>
+          <div>
+            <Link style={{ textDecoration: "none", color: "white" }} to="/">
+              Login
+            </Link>
+          </div>
+        </Navigation>
         <Switch>
           <Route path="/register">
             <Register />
@@ -50,7 +58,7 @@ const Authenticator = () => {
             <Login setAuth={setAuth} />
           </Route>
         </Switch>
-      </>
+      </Container>
     );
   }
   return (

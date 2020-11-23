@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { StyledLog, Form, User, Pass } from "./styled";
 
 const Login = (props) => {
   const history = useHistory();
@@ -36,19 +37,20 @@ const Login = (props) => {
       );
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit(handleForm)}>
-        <div>
-          <span> Usuario: </span>
+    <StyledLog>
+      <Form onSubmit={handleSubmit(handleForm)}>
+        <h1>Login</h1>
+        <User>
+          <div></div>
           <input
             placeholder="What's your username?"
             name="user"
             ref={register}
           ></input>
           <p style={{ color: "red" }}>{errors.user?.message}</p>
-        </div>
-        <div>
-          <span> Senha: </span>
+        </User>
+        <Pass>
+          <div></div>
           <input
             placeholder="put your password"
             name="password"
@@ -56,13 +58,13 @@ const Login = (props) => {
             ref={register}
           ></input>
           <p style={{ color: "red" }}>{errors.password?.message}</p>
-        </div>
+        </Pass>
         <div>
           <p style={{ color: "red" }}>{errors.user_authentication?.message}</p>
-          <button type="submit">Manda bala</button>
+          <button type="submit">Enter</button>
         </div>
-      </form>
-    </div>
+      </Form>
+    </StyledLog>
   );
 };
 

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { StyledReg } from "./styled";
 
 const Register = () => {
   const history = useHistory();
@@ -41,7 +42,7 @@ const Register = () => {
       );
   };
   return (
-    <div>
+    <StyledReg>
       <form onSubmit={handleSubmit(handleForm)}>
         <div>
           <span>Nome:</span>
@@ -95,7 +96,7 @@ const Register = () => {
           <button type="submit">Manda bala</button>
         </div>
       </form>
-    </div>
+    </StyledReg>
   );
 };
 

@@ -42,48 +42,48 @@ const MembersArea = () => {
         for (let i = 1; i <= totalPages; i++) {
           arrayPages.push(i);
         }
-        const allUsers = res.data
-        
+        const allUsers = res.data;
+
         usersPerPage(allUsers);
         setPages(arrayPages);
       });
   }, [total, startPagination, endPagination]);
 
   useEffect(() => {
-    setStartPagination(0)
+    setStartPagination(0);
     setEndPagination(limit);
-  }, [limit])
+  }, [limit]);
 
   const usersPerPage = useCallback((e) => {
-    const users = e.slice(startPagination, endPagination)
-    setUsers(users)
+    const users = e.slice(startPagination, endPagination);
+    setUsers(users);
   });
 
   const limits = useCallback((e) => {
     setLimit(e.target.value);
-    setEndPagination(e.target.value)
+    setEndPagination(e.target.value);
   });
 
   const setPrevPagination = useCallback(() => {
     if (startPagination > 0) {
-      setStartPagination(startPagination - limit)
-      setEndPagination(endPagination - limit)
+      setStartPagination(startPagination - limit);
+      setEndPagination(endPagination - limit);
     }
-  })
+  });
 
   const setNextPagination = useCallback(() => {
-    setStartPagination(startPagination + limit)
-    setEndPagination(endPagination + limit)
-  })
-  
-  const goToPagination = useCallback((e) => {
-    setCurrentPage(e)
-    setStartPagination((0 + (e*limit)) + limit)
-    setEndPagination((limit + (e*limit)) + limit)
+    setStartPagination(startPagination + limit);
+    setEndPagination(endPagination + limit);
+  });
 
-    console.log(startPagination)
-    console.log(endPagination)
-  })
+  const goToPagination = useCallback((e) => {
+    setCurrentPage(e);
+    setStartPagination(0 + e * limit + limit);
+    setEndPagination(limit + e * limit + limit);
+
+    console.log(startPagination);
+    console.log(endPagination);
+  });
 
   return (
     <>
@@ -119,9 +119,7 @@ const MembersArea = () => {
               <div>Qtd {total}</div>
               <PaginationButton>
                 {currentPage > 1 && (
-                  <PaginationItem
-                    onClick={setPrevPagination}
-                  >
+                  <PaginationItem onClick={setPrevPagination}>
                     Previous
                   </PaginationItem>
                 )}
@@ -136,9 +134,7 @@ const MembersArea = () => {
                   </PaginationItem>
                 ))}
                 {currentPage < pages.length && (
-                  <PaginationItem
-                    onClick={setNextPagination}
-                  >
+                  <PaginationItem onClick={setNextPagination}>
                     Next
                   </PaginationItem>
                 )}
