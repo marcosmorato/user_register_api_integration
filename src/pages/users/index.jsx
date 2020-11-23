@@ -53,6 +53,7 @@ const MembersArea = () => {
     if (startPosition > 0) {
       setEndPosition(16);
       setStartPosition(0);
+      setCurrentPage(users[0]);
     }
   };
 
@@ -60,6 +61,7 @@ const MembersArea = () => {
     if (endPosition < users.length) {
       setEndPosition(users.length);
       setStartPosition(users.length - 16);
+      setCurrentPage(users[users.length - 1]);
     }
   };
 
