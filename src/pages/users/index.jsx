@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
 import UserList from "../../components/userList";
@@ -25,27 +25,6 @@ const MembersArea = () => {
 
   const token = window.localStorage.getItem("authToken");
 
-  useEffect(() => {
-    axios
-      .get(`https://ka-users-api.herokuapp.com/users`, {
-        headers: { Authorization: token },
-      })
-      .then((res) => {
-        setUserList(res.data.sort((a, b) => a.id - b.id));
-        setTotal(res.data.length);
-        const totalPages = Math.floor(total / 10);
-        const numOfPages = [];
-        for (let i = 1; i <= totalPages; i++) {
-          numOfPages.push(i);
-        }
-        startPag();
-        setPages(numOfPages);
-      });
-  }, [total]);
-
-  useEffect(() => {
-    setCurrentPage(users[position]);
-  }, [position]);
   const createPage = (base, max) => {
     const res = [[]];
     let grupo = 0;
@@ -71,15 +50,15 @@ const MembersArea = () => {
     setCurrentPage(users[0]);
   };
   const goToStart = () => {
-    if (position > 0) {
+    if (startPosition > 0) {
       setEndPosition(16);
       setStartPosition(0);
     }
   };
 
   const goToEnd = () => {
-    if (position < users.length - 1) {
-      setEndPosition(users.length - 1);
+    if (endPosition < users.length) {
+      setEndPosition(users.length);
       setStartPosition(users.length - 16);
     }
   };
@@ -101,16 +80,49 @@ const MembersArea = () => {
   };
 
   const goToPag = (e) => {
-    setCurrentPage(users[e - 1]);
-    setPosition(e - 1);
-    if (endPosition - e < 8 && e <= users.length - 1) {
+    setCurrentPage(users[e]);
+    setPosition(e);
+
+    console.log(endPosition - startPosition);
+
+    if (
+      endPosition - e < 8 &&
+      position < users.length - 1 &&
+      endPosition - startPosition === 16
+    ) {
       setEndPosition(endPosition + 1);
       setStartPosition(startPosition + 1);
-    } else if (startPosition > 0) {
+    } else if (
+      startPosition > 0 &&
+      position < users.length - 1 &&
+      endPosition - startPosition === 16
+    ) {
       setEndPosition(endPosition - 1);
       setStartPosition(startPosition - 1);
     }
   };
+
+  useEffect(() => {
+    axios
+      .get(`https://ka-users-api.herokuapp.com/users`, {
+        headers: { Authorization: token },
+      })
+      .then((res) => {
+        setUserList(res.data.sort((a, b) => a.id - b.id));
+        setTotal(res.data.length);
+        const totalPages = Math.floor(total / 10);
+        const numOfPages = [];
+        for (let i = 0; i <= totalPages; i++) {
+          numOfPages.push(i);
+        }
+        startPag();
+        setPages(numOfPages);
+      });
+  }, [total]);
+
+  useEffect(() => {
+    setCurrentPage(users[position]);
+  }, [position]);
 
   return (
     <>
