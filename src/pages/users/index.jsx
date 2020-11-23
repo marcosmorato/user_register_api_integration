@@ -16,74 +16,101 @@ import {
 const MembersArea = () => {
   const [userList, setUserList] = useState([]);
   const [total, setTotal] = useState(0);
-  const [limit, setLimit] = useState(5);
   const [pages, setPages] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [users, setUsers] = useState([]);
+  const [position, setPosition] = useState(0);
+  const [endPosition, setEndPosition] = useState(16);
+  const [startPosition, setStartPosition] = useState(0);
 
-  const [startPagination, setStartPagination] = useState(0);
-  const [endPagination, setEndPagination] = useState(5);
+  const [currentPage, setCurrentPage] = useState([]);
 
   const token = window.localStorage.getItem("authToken");
 
   useEffect(() => {
     axios
-      .get(
-        `https://ka-users-api.herokuapp.com/users?page=${currentPage}&limit=${limit}`,
-        {
-          headers: { Authorization: token },
-        }
-      )
+      .get(`https://ka-users-api.herokuapp.com/users`, {
+        headers: { Authorization: token },
+      })
       .then((res) => {
         setUserList(res.data.sort((a, b) => a.id - b.id));
         setTotal(res.data.length);
-        const totalPages = Math.ceil(total / limit);
-        const arrayPages = [];
+        const totalPages = Math.floor(total / 10);
+        const numOfPages = [];
         for (let i = 1; i <= totalPages; i++) {
-          arrayPages.push(i);
+          numOfPages.push(i);
         }
-        const allUsers = res.data
-        
-        usersPerPage(allUsers);
-        setPages(arrayPages);
+        startPag();
+        setPages(numOfPages);
       });
-  }, [total, startPagination, endPagination]);
+  }, [total]);
 
   useEffect(() => {
-    setStartPagination(0)
-    setEndPagination(limit);
-  }, [limit])
+    setCurrentPage(users[position]);
+  }, [position]);
+  const createPage = (base, max) => {
+    const res = [[]];
+    let grupo = 0;
 
-  const usersPerPage = useCallback((e) => {
-    const users = e.slice(startPagination, endPagination)
-    setUsers(users)
-  });
+    for (let i = 0; i < base.length; i++) {
+      if (res[grupo] === undefined) {
+        res[grupo] = [];
+      }
 
-  const limits = useCallback((e) => {
-    setLimit(e.target.value);
-    setEndPagination(e.target.value)
-  });
+      res[grupo].push(base[i]);
 
-  const setPrevPagination = useCallback(() => {
-    if (startPagination > 0) {
-      setStartPagination(startPagination - limit)
-      setEndPagination(endPagination - limit)
+      if ((i + 1) % max === 0) {
+        grupo = grupo + 1;
+      }
     }
-  })
 
-  const setNextPagination = useCallback(() => {
-    setStartPagination(startPagination + limit)
-    setEndPagination(endPagination + limit)
-  })
-  
-  const goToPagination = useCallback((e) => {
-    setCurrentPage(e)
-    setStartPagination((0 + (e*limit)) + limit)
-    setEndPagination((limit + (e*limit)) + limit)
+    return res;
+  };
 
-    console.log(startPagination)
-    console.log(endPagination)
-  })
+  const users = createPage(userList, 10);
+
+  const startPag = () => {
+    setCurrentPage(users[0]);
+  };
+  const goToStart = () => {
+    if (position > 0) {
+      setEndPosition(16);
+      setStartPosition(0);
+    }
+  };
+
+  const goToEnd = () => {
+    if (position < users.length - 1) {
+      setEndPosition(users.length - 1);
+      setStartPosition(users.length - 16);
+    }
+  };
+
+  const setPrevPag = () => {
+    if (position > 0) {
+      setPosition(position - 1);
+      setEndPosition(endPosition - 1);
+      setStartPosition(startPosition - 1);
+    }
+  };
+
+  const setNextPag = () => {
+    if (position < users.length - 1) {
+      setPosition(position + 1);
+      setEndPosition(endPosition + 1);
+      setStartPosition(startPosition + 1);
+    }
+  };
+
+  const goToPag = (e) => {
+    setCurrentPage(users[e - 1]);
+    setPosition(e - 1);
+    if (endPosition - e < 8 && e <= users.length - 1) {
+      setEndPosition(endPosition + 1);
+      setStartPosition(startPosition + 1);
+    } else if (startPosition > 0) {
+      setEndPosition(endPosition - 1);
+      setStartPosition(startPosition - 1);
+    }
+  };
 
   return (
     <>
@@ -105,43 +132,34 @@ const MembersArea = () => {
         <Route path="/users">
           <Container>
             <h1>Alunos</h1>
-            <select onChange={limits}>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="50">50</option>
-              <option value="100">100</option>
-            </select>
-            <button onClick={setNextPagination}>teste</button>
             <Table>
-              <UserList list={users} total={total} />
+              <UserList list={currentPage} total={total} />
             </Table>
             <Pagination>
               <div>Qtd {total}</div>
               <PaginationButton>
-                {currentPage > 1 && (
-                  <PaginationItem
-                    onClick={setPrevPagination}
-                  >
-                    Previous
-                  </PaginationItem>
-                )}
+                <PaginationItem onClick={setPrevPag}>Previous</PaginationItem>
 
-                {pages.map((page) => (
-                  <PaginationItem
-                    isSelect={page === currentPage}
-                    key={page}
-                    onClick={() => goToPagination(page)}
-                  >
-                    {page}
-                  </PaginationItem>
-                ))}
-                {currentPage < pages.length && (
-                  <PaginationItem
-                    onClick={setNextPagination}
-                  >
-                    Next
-                  </PaginationItem>
-                )}
+                <PaginationItem onClick={goToStart}>
+                  Volte ao inicio
+                </PaginationItem>
+
+                {pages.map((page, idx, arr) => {
+                  if (idx >= startPosition && idx < endPosition) {
+                    return (
+                      <PaginationItem
+                        isSelect={page === currentPage}
+                        key={idx}
+                        onClick={() => goToPag(page)}
+                      >
+                        {page}
+                      </PaginationItem>
+                    );
+                  }
+                })}
+
+                <PaginationItem onClick={setNextPag}>Next</PaginationItem>
+                <PaginationItem onClick={goToEnd}>Go to the end</PaginationItem>
               </PaginationButton>
             </Pagination>
           </Container>
