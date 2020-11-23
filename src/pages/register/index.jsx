@@ -3,7 +3,15 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { StyledReg } from "./styled";
+import {
+  StyledReg,
+  Form,
+  User,
+  Name,
+  Email,
+  Pass,
+  ConfirmPass,
+} from "./styled";
 
 const Register = () => {
   const history = useHistory();
@@ -43,45 +51,45 @@ const Register = () => {
   };
   return (
     <StyledReg>
-      <form onSubmit={handleSubmit(handleForm)}>
-        <div>
-          <span>Nome:</span>
+      <Form onSubmit={handleSubmit(handleForm)}>
+        <Name>
+          <div></div>
           <input
             placeholder="What's your username?"
             name="name"
             ref={register}
           ></input>
           <p style={{ color: "red" }}>{errors.name?.message}</p>
-        </div>
-        <div>
-          <span>Usuario:</span>
+        </Name>
+        <User>
+          <div></div>
           <input
             placeholder="What's your username?"
             name="user"
             ref={register}
           ></input>
           <p style={{ color: "red" }}>{errors.user?.message}</p>
-        </div>
-        <div>
-          <span>Email:</span>
+        </User>
+        <Email>
+          <div></div>
           <input
             placeholder="put your email"
             name="email"
             ref={register}
           ></input>
           <p style={{ color: "red" }}>{errors.email?.message}</p>
-        </div>
-        <div>
-          <span>Senha:</span>
+        </Email>
+        <Pass>
+          <div></div>
           <input
             placeholder="put your password"
             name="password"
             ref={register}
           ></input>
           <p style={{ color: "red" }}>{errors.password?.message}</p>
-        </div>
-        <div>
-          <span>Confirme sua senha:</span>
+        </Pass>
+        <ConfirmPass>
+          <div></div>
           <input
             placeholder="confirm your password"
             name="password_confirmation"
@@ -90,12 +98,12 @@ const Register = () => {
           <p style={{ color: "red" }}>
             {errors.password_confirmation?.message}
           </p>
-        </div>
+        </ConfirmPass>
         <div>
           <p style={{ color: "red" }}>{errors.user_register?.message}</p>
-          <button type="submit">Manda bala</button>
+          <button type="submit">Register</button>
         </div>
-      </form>
+      </Form>
     </StyledReg>
   );
 };
