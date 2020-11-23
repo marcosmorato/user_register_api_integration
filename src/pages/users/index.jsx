@@ -141,13 +141,39 @@ const MembersArea = () => {
           <NewFeedback />
         </Route>
         <Route path="/users/:userId/feedbacks">
-          <Feedback />
+          <Table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>USER</th>
+                <th>CREATOR'S NAME</th>
+                <th>CREATOR'S USER</th>
+                <th>GRADE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <Feedback />
+            </tbody>
+          </Table>
         </Route>
         <Route path="/users">
           <Container>
             <h1>Alunos</h1>
             <Table>
-              <UserList list={currentPage} total={total} />
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>User</th>
+                  <th>Email</th>
+                  <th>Go to Feedback</th>
+                  <th>New Feedback</th>
+                </tr>
+              </thead>
+              <tbody>
+                <UserList list={currentPage} total={total} />
+              </tbody>
             </Table>
             <Pagination>
               <div>Qtd {total}</div>
