@@ -132,27 +132,31 @@ const MembersArea = () => {
         </button>
         <Logout />
       </Navigation>
+
       <Switch>
         <Route path="/users/:userId/feedbacks/new">
           <NewFeedback />
         </Route>
         <Route path="/users/:userId/feedbacks">
-          <Table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>USER</th>
-                <th>CREATOR'S NAME</th>
-                <th>CREATOR'S USER</th>
-                <th>GRADE</th>
-              </tr>
-            </thead>
-            <tbody>
-              <Feedback />
-            </tbody>
-          </Table>
+          <Container>
+            <Table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>NAME</th>
+                  <th>USER</th>
+                  <th>CREATOR'S NAME</th>
+                  <th>CREATOR'S USER</th>
+                  <th>GRADE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <Feedback />
+              </tbody>
+            </Table>
+          </Container>
         </Route>
+
         <Route path="/users">
           <Container>
             <h1>Alunos</h1>
