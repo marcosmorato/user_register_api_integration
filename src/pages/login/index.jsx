@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { StyledLog, Form, User, Pass } from "./styled";
 
 const Login = (props) => {
   const history = useHistory();
@@ -13,7 +14,7 @@ const Login = (props) => {
       .min(8, "Senha deve conter no mínimo 8 dígitos")
       .matches(
         /^((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-        "Senha deve conter: pelomenos 1 letra maiuscula, 1 letra minuscula, 1 caractere especial e 1 número"
+        "Senha Invalida"
       )
       .required("Campo obrigatório"),
   });
@@ -36,33 +37,30 @@ const Login = (props) => {
       );
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit(handleForm)}>
-        <div>
-          <span> Usuario: </span>
-          <input
-            placeholder="What's your username?"
-            name="user"
-            ref={register}
-          ></input>
+    <StyledLog>
+      <Form onSubmit={handleSubmit(handleForm)}>
+        <h1>Login</h1>
+        <User>
+          <div></div>
+          <input placeholder="Username?" name="user" ref={register}></input>
           <p style={{ color: "red" }}>{errors.user?.message}</p>
-        </div>
-        <div>
-          <span> Senha: </span>
+        </User>
+        <Pass>
+          <div></div>
           <input
-            placeholder="put your password"
+            placeholder="Password"
             name="password"
             type="password"
             ref={register}
           ></input>
           <p style={{ color: "red" }}>{errors.password?.message}</p>
-        </div>
+        </Pass>
         <div>
           <p style={{ color: "red" }}>{errors.user_authentication?.message}</p>
-          <button type="submit">Manda bala</button>
+          <button type="submit">Entrar</button>
         </div>
-      </form>
-    </div>
+      </Form>
+    </StyledLog>
   );
 };
 
