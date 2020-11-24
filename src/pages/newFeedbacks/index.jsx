@@ -4,6 +4,7 @@ import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Main, Form, Name, Comment, Grade } from "./styled";
+import { ButtonBack, ButtonSend } from "../../components/buttonLogout/styled";
 
 const NewFeedbacks = () => {
   const { userId } = useParams();
@@ -52,7 +53,7 @@ const NewFeedbacks = () => {
         <Comment>
           Comment:
           <input
-            placeholder="tell me your history"
+            placeholder="tell me your feedback"
             name="comment"
             ref={register}
           ></input>
@@ -68,11 +69,11 @@ const NewFeedbacks = () => {
           ></input>
           <p style={{ color: "red" }}>{errors.grade?.message}</p>
         </Grade>
-        <button type="submit">enviar</button>
+        <ButtonSend type="submit">Send</ButtonSend>
       </Form>
-      <button onClick={() => history.push(`/users/${userId}/feedbacks`)}>
+      <ButtonBack onClick={() => history.push(`/users/${userId}/feedbacks`)}>
         Go back
-      </button>
+      </ButtonBack>
     </Main>
   );
 };

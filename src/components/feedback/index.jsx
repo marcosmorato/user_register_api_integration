@@ -1,20 +1,22 @@
+import { TableCell } from "../../pages/users/style";
+
 const Feedback = (props) => {
   return (
     <>
-      <td>{props.id} </td>
-      <td> {props.name} </td>
-      <td> {props.comment} </td>
+      <TableCell>{props.id} </TableCell>
+      <TableCell> {props.name} </TableCell>
+      <TableCell> {props.comment} </TableCell>
       {props.creator ? (
-        <td> {props.creator.name} </td>
+        <TableCell> {props.creator.name} </TableCell>
       ) : (
-        <div>my creator don't have name</div>
+        <TableCell>my creator don't have name</TableCell>
       )}
       {props.creator ? (
-        <td> {props.creator.user} </td>
+        <TableCell> {props.creator.user} </TableCell>
       ) : (
-        <div>my creator don't have name</div>
+        <TableCell>my creator don't have name</TableCell>
       )}
-      <td> {props.grade} </td>
+      <TableCell> {props.grade} </TableCell>
     </>
   );
 };

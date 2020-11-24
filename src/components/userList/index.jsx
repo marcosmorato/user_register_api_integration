@@ -1,9 +1,9 @@
 import User from "../user";
-import { Component, Table } from "../user/styled";
+import { TableRow } from "../../pages/users/style";
 
 const UserList = ({ list, total }) => {
   return list.map(({ id, name, user, email }, index) => (
-    <tr>
+    <TableRow>
       <User
         key={index}
         id={id}
@@ -12,7 +12,7 @@ const UserList = ({ list, total }) => {
         email={email}
         total={total}
       />
-    </tr>
+    </TableRow>
   ));
 };
 

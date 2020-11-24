@@ -8,20 +8,7 @@ export const Main = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #282c34;
-  button {
-    width: 10%;
-    height: 5%;
-    border: 1px solid black;
-    border-radius: 10px;
-    margin-top: 10px;
-    font-size: 1.2rem;
-    :hover {
-      cursor: pointer;
-      border: 2px solid black;
-      border-radius: 10px;
-    }
-  }
+  background-color: #0a0b0b;
 `;
 
 export const Form = styled.form`
@@ -35,18 +22,6 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  button {
-    width: 25%;
-    height: 10%;
-    border: 1px solid black;
-    border-radius: 10px;
-    :hover {
-      cursor: pointer;
-      border: 2px solid black;
-      border-radius: 10px;
-    }
-  }
 `;
 
 export const Name = styled.div`

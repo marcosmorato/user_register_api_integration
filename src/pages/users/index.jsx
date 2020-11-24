@@ -6,13 +6,16 @@ import Feedback from "../feedbacks";
 import NewFeedback from "../newFeedbacks";
 import Logout from "../../components/buttonLogout";
 import {
-  Container,
   Table,
+  TableRow,
+  TableFooter,
   Pagination,
-  PaginationItem,
   PaginationButton,
-} from "../../components/user/styled";
+  PaginationItem,
+  Container,
+} from "./style";
 import { Navigation } from "../../components/authenticator/styled";
+import { Button } from "../../components/buttonLogout/styled";
 
 const MembersArea = () => {
   const [userList, setUserList] = useState([]);
@@ -127,9 +130,9 @@ const MembersArea = () => {
   return (
     <>
       <Navigation>
-        <button>
+        <Button>
           <Link to="/users">Users</Link>
-        </button>
+        </Button>
         <Logout />
       </Navigation>
 
@@ -139,21 +142,8 @@ const MembersArea = () => {
         </Route>
         <Route path="/users/:userId/feedbacks">
           <Container>
-            <Table>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>NAME</th>
-                  <th>USER</th>
-                  <th>CREATOR'S NAME</th>
-                  <th>CREATOR'S USER</th>
-                  <th>GRADE</th>
-                </tr>
-              </thead>
-              <tbody>
-                <Feedback />
-              </tbody>
-            </Table>
+            <h1>Feedbacks</h1>
+            <Feedback />
           </Container>
         </Route>
 
@@ -162,46 +152,50 @@ const MembersArea = () => {
             <h1>Alunos</h1>
             <Table>
               <thead>
-                <tr>
+                <TableRow>
                   <th>ID</th>
                   <th>Name</th>
                   <th>User</th>
                   <th>Email</th>
                   <th>Go to Feedback</th>
                   <th>New Feedback</th>
-                </tr>
+                </TableRow>
               </thead>
               <tbody>
                 <UserList list={currentPage} total={total} />
               </tbody>
             </Table>
-            <Pagination>
-              <div>Qtd {total}</div>
-              <PaginationButton>
-                <PaginationItem onClick={setPrevPag}>Previous</PaginationItem>
+            <TableFooter>
+              <Pagination>
+                <div>Quantidade de registros: {total} </div>
+                <PaginationButton>
+                  <PaginationItem onClick={setPrevPag}>Previous</PaginationItem>
 
-                <PaginationItem onClick={goToStart}>
-                  Volte ao inicio
-                </PaginationItem>
+                  <PaginationItem onClick={goToStart}>
+                    Volte ao inicio
+                  </PaginationItem>
 
-                {pages.map((page, idx, arr) => {
-                  if (idx >= startPosition && idx < endPosition) {
-                    return (
-                      <PaginationItem
-                        isSelect={page === currentPage}
-                        key={idx}
-                        onClick={() => goToPag(page)}
-                      >
-                        {page}
-                      </PaginationItem>
-                    );
-                  }
-                })}
+                  {pages.map((page, idx, arr) => {
+                    if (idx >= startPosition && idx < endPosition) {
+                      return (
+                        <PaginationItem
+                          isSelect={page === position}
+                          key={idx}
+                          onClick={() => goToPag(page)}
+                        >
+                          {page}
+                        </PaginationItem>
+                      );
+                    }
+                  })}
 
-                <PaginationItem onClick={setNextPag}>Next</PaginationItem>
-                <PaginationItem onClick={goToEnd}>Go to the end</PaginationItem>
-              </PaginationButton>
-            </Pagination>
+                  <PaginationItem onClick={setNextPag}>Next</PaginationItem>
+                  <PaginationItem onClick={goToEnd}>
+                    Go to the end
+                  </PaginationItem>
+                </PaginationButton>
+              </Pagination>
+            </TableFooter>
           </Container>
         </Route>
       </Switch>
