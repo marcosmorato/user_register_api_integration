@@ -1,15 +1,5 @@
 import styled from "styled-components";
 
-export const StyledLog = styled.main`
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #282c34;
-`;
-
 export const Form = styled.form`
   background-color: white;
   box-sizing: border-box;
@@ -32,6 +22,7 @@ export const Form = styled.form`
     height: 30px;
     border: 1px solid black;
     border-radius: 10px;
+    outline: none;
     :hover {
       cursor: pointer;
       border: 2px solid black;

@@ -12,6 +12,7 @@ import {
   PaginationItem,
   PaginationButton,
 } from "../../components/user/styled";
+import { Navigation } from "../../components/authenticator/styled";
 
 const MembersArea = () => {
   const [userList, setUserList] = useState([]);
@@ -125,14 +126,12 @@ const MembersArea = () => {
 
   return (
     <>
-      <ul>
-        <li>
+      <Navigation>
+        <button>
           <Link to="/users">Users</Link>
-        </li>
-        <li>
-          <Logout />
-        </li>
-      </ul>
+        </button>
+        <Logout />
+      </Navigation>
       <Switch>
         <Route path="/users/:userId/feedbacks/new">
           <NewFeedback />

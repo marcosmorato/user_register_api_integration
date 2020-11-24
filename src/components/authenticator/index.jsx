@@ -34,24 +34,29 @@ const Authenticator = () => {
   }
   if (isAuth === false) {
     return (
-      <Container>
+      <>
         <Navigation>
-          <div>
+          <button>
             <Link to="/register">Cadastro</Link>
-          </div>
-          <div>
+          </button>
+          <button>
             <Link to="/">Login</Link>
-          </div>
+          </button>
         </Navigation>
+
         <Switch>
           <Route path="/register">
-            <Register />
+            <Container>
+              <Register />
+            </Container>
           </Route>
           <Route path="/">
-            <Login setAuth={setAuth} />
+            <Container>
+              <Login setAuth={setAuth} />
+            </Container>
           </Route>
         </Switch>
-      </Container>
+      </>
     );
   }
   return (
