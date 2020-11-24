@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
-
-import { Container, Table } from "./styled";
+import { useHistory } from "react-router-dom";
+import { TableCell } from "../../pages/users/style";
+import { ButtonGo } from "../buttonLogout/styled";
 
 const User = (props) => {
   const history = useHistory();
@@ -13,16 +12,16 @@ const User = (props) => {
   };
   return (
     <>
-      <td> {props.id} </td>
-      <td> {props.name} </td>
-      <td> {props.user} </td>
-      <td> {props.email} </td>
-      <td>
-        <button onClick={getFeedback}>Go to feedback</button>
-      </td>
-      <td>
-        <button onClick={newFeedback}>New feedback</button>
-      </td>
+      <TableCell> {props.id} </TableCell>
+      <TableCell> {props.name} </TableCell>
+      <TableCell> {props.user} </TableCell>
+      <TableCell> {props.email} </TableCell>
+      <TableCell>
+        <ButtonGo onClick={getFeedback}>Go to feedback</ButtonGo>
+      </TableCell>
+      <TableCell>
+        <ButtonGo onClick={newFeedback}>New feedback</ButtonGo>
+      </TableCell>
     </>
   );
 };

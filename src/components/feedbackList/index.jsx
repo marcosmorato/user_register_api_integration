@@ -1,8 +1,9 @@
 import Feedback from "../feedback";
+import { TableRow } from "../../pages/users/style";
 
 const FeedbackList = ({ list }) => {
   return list.map(({ id, name, comment, grade }, index) => (
-    <tr key={index}>
+    <TableRow key={index}>
       <Feedback
         id={id}
         name={name}
@@ -10,7 +11,7 @@ const FeedbackList = ({ list }) => {
         grade={grade}
         creator={list[index].creator}
       />
-    </tr>
+    </TableRow>
   ));
 };
 

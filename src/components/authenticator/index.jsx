@@ -4,6 +4,7 @@ import Login from "../../pages/login";
 import Register from "../../pages/register";
 import MembersArea from "../../pages/users";
 import axios from "axios";
+import { Button } from "../buttonLogout/styled";
 import { Container, Navigation } from "./styled";
 
 const Authenticator = () => {
@@ -36,12 +37,12 @@ const Authenticator = () => {
     return (
       <>
         <Navigation>
-          <button>
+          <Button>
             <Link to="/register">Cadastro</Link>
-          </button>
-          <button>
+          </Button>
+          <Button>
             <Link to="/">Login</Link>
-          </button>
+          </Button>
         </Navigation>
 
         <Switch>

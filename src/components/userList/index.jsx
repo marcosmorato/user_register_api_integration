@@ -1,11 +1,11 @@
 import User from "../user";
-import { Component, Table } from "../user/styled";
+import { TableRow } from "../../pages/users/style";
 
 const UserList = ({ list, total }) => {
   return list.map(({ id, name, user, email }, index) => (
-    <tr key={index}>
+    <TableRow key={index}>
       <User id={id} name={name} user={user} email={email} total={total} />
-    </tr>
+    </TableRow>
   ));
 };
 

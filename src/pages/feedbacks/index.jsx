@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams, useHistory } from "react-router-dom";
+import axios from "axios";
 import FeedbackList from "../../components/feedbackList";
+import { ButtonNew } from "../../components/buttonLogout/styled";
 import {
-  Container,
   Table,
+  TableRow,
+  TableCell,
+  TableFooter,
   Pagination,
   PaginationItem,
   PaginationButton,
-} from "../../components/user/styled";
+} from "../../pages/users/style";
 
 const Feedback = () => {
   const { userId } = useParams();
@@ -45,19 +48,10 @@ const Feedback = () => {
     setCurrentPage(users[0]);
   };
 
-  const goToEnd = () => {
-    console.log(endPosition);
-    if (endPosition < users.length - 1) {
-      setEndPosition(users.length - 1);
-      setStartPosition(users.length - 16);
-      setCurrentPage(users[users.length - 1]);
-      console.log(endPosition);
-    }
-  };
-
   const setPrevPag = () => {
     if (position > 0) {
       setPosition(position - 1);
+    } else if (position > 15) {
       setEndPosition(endPosition - 1);
       setStartPosition(startPosition - 1);
     }
@@ -66,6 +60,7 @@ const Feedback = () => {
   const setNextPag = () => {
     if (position < users.length - 1) {
       setPosition(position + 1);
+    } else if (position > 15) {
       setEndPosition(endPosition + 1);
       setStartPosition(startPosition + 1);
     }
@@ -114,36 +109,67 @@ const Feedback = () => {
   }, [position]);
   return (
     <>
-      {feedbackList.length === 0 ? (
-        <div>No data</div>
-      ) : (
-        <FeedbackList list={currentPage} total={total} />
-      )}
+      <ButtonNew onClick={newFeedback}>New feedback</ButtonNew>
+      <Table>
+        {feedbackList.length === 0 ? (
+          <>
+            <thead>
+              <TableRow>
+                <th>Data</th>
+              </TableRow>
+            </thead>
+            <tbody>
+              <TableRow>
+                <TableCell>No data</TableCell>
+              </TableRow>
+            </tbody>
+          </>
+        ) : (
+          <>
+            <thead>
+              <TableRow>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>USER</th>
+                <th>CREATOR'S NAME</th>
+                <th>CREATOR'S USER</th>
+                <th>GRADE</th>
+              </TableRow>
+            </thead>
+            <tbody>
+              <FeedbackList list={currentPage} total={total} />
+            </tbody>
+          </>
+        )}
+      </Table>
+      <TableFooter>
+        <Pagination>
+          <div>Quantidade de Feedbacks: {total}</div>
+          <PaginationButton>
+            {total > 9 && (
+              <PaginationItem onClick={setPrevPag}>Previous</PaginationItem>
+            )}
 
-      <Pagination>
-        <div>Qtd {total}</div>
-        <PaginationButton>
-          <PaginationItem onClick={setPrevPag}>Previous</PaginationItem>
+            {pages.map((page, idx, arr) => {
+              if (idx >= startPosition && idx < endPosition) {
+                return (
+                  <PaginationItem
+                    isSelect={page === currentPage}
+                    key={idx}
+                    onClick={() => goToPag(page)}
+                  >
+                    {page}
+                  </PaginationItem>
+                );
+              }
+            })}
 
-          {pages.map((page, idx, arr) => {
-            if (idx >= startPosition && idx < endPosition) {
-              return (
-                <PaginationItem
-                  isSelect={page === currentPage}
-                  key={idx}
-                  onClick={() => goToPag(page)}
-                >
-                  {page}
-                </PaginationItem>
-              );
-            }
-          })}
-
-          <PaginationItem onClick={setNextPag}>Next</PaginationItem>
-        </PaginationButton>
-      </Pagination>
-
-      <button onClick={newFeedback}>New feedback</button>
+            {total > 9 && (
+              <PaginationItem onClick={setNextPag}>Next</PaginationItem>
+            )}
+          </PaginationButton>
+        </Pagination>
+      </TableFooter>
     </>
   );
 };

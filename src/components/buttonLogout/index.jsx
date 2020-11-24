@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom";
-import { Button } from "../../pages/users/style";
+import { Button } from "./styled";
 
 const Logout = () => {
   const history = useHistory();
