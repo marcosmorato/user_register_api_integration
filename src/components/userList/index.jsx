@@ -3,15 +3,8 @@ import { TableRow } from "../../pages/users/style";
 
 const UserList = ({ list, total }) => {
   return list.map(({ id, name, user, email }, index) => (
-    <TableRow>
-      <User
-        key={index}
-        id={id}
-        name={name}
-        user={user}
-        email={email}
-        total={total}
-      />
+    <TableRow key={index}>
+      <User id={id} name={name} user={user} email={email} total={total} />
     </TableRow>
   ));
 };
