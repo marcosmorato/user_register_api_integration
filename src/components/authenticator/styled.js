@@ -32,5 +32,11 @@ export const Navigation = styled.nav`
       cursor: pointer;
       border: 2px solid aqua;
     }
+    a {
+      color: white;
+      text-decoration: none;
+      width: 100%;
+      text-align: center;
+    }
   }
 `;
