@@ -1,4 +1,4 @@
-import { TableCell } from "../../pages/users/style";
+import { TableCell } from "../StyledComponents/Table/styled";
 
 const Feedback = (props) => {
   return (

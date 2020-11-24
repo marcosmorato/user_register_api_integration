@@ -111,3 +111,27 @@ export const ButtonSend = styled.button`
     border: 2px solid whitesmoke;
   }
 `;
+
+export const ButtonIni = styled.button`
+  box-sizing: border-box;
+  width: 40%;
+  height: 80%;
+  margin: 10px 0px 0px 0px;
+  background: none;
+  color: #0a0b0b;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: 2px solid #0a0b0b;
+  border-radius: 10px;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  :hover {
+    cursor: pointer;
+    background: #0a0b0b;
+    color: whitesmoke;
+    border: 2px solid whitesmoke;
+  }
+`;

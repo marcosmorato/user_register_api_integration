@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom";
-import { TableCell } from "../../pages/users/style";
-import { ButtonGo } from "../buttonLogout/styled";
+import { TableCell } from "../StyledComponents/Table/styled";
+import { ButtonGo } from "../../components/StyledComponents/Button/styled";
 
 const User = (props) => {
   const history = useHistory();

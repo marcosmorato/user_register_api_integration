@@ -1,5 +1,5 @@
 import User from "../user";
-import { TableRow } from "../../pages/users/style";
+import { TableRow } from "../StyledComponents/Table/styled";
 
 const UserList = ({ list, total }) => {
   return list.map(({ id, name, user, email }, index) => (

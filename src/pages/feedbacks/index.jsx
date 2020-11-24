@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import FeedbackList from "../../components/feedbackList";
-import { ButtonNew } from "../../components/buttonLogout/styled";
+import { ButtonNew } from "../../components/StyledComponents/Button/styled";
 import {
   Table,
   TableRow,
@@ -11,7 +11,7 @@ import {
   Pagination,
   PaginationItem,
   PaginationButton,
-} from "../../pages/users/style";
+} from "../../components/StyledComponents/Table/styled";
 
 const Feedback = () => {
   const { userId } = useParams();

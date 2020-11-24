@@ -5,6 +5,8 @@ import UserList from "../../components/userList";
 import Feedback from "../feedbacks";
 import NewFeedback from "../newFeedbacks";
 import Logout from "../../components/buttonLogout";
+import { Container } from "../../components/StyledComponents/Container/styled";
+import { Navigation } from "../../components/StyledComponents/Navigation/styled";
 import {
   Table,
   TableRow,
@@ -12,10 +14,7 @@ import {
   Pagination,
   PaginationButton,
   PaginationItem,
-  Container,
-} from "./style";
-import { Navigation } from "../../components/authenticator/styled";
-import { Button } from "../../components/buttonLogout/styled";
+} from "../../components/StyledComponents/Table/styled";
 
 const MembersArea = () => {
   const [userList, setUserList] = useState([]);
@@ -130,9 +129,8 @@ const MembersArea = () => {
   return (
     <>
       <Navigation>
-        <Button>
-          <Link to="/users">Users</Link>
-        </Button>
+        <Link to="/users">Users</Link>
+
         <Logout />
       </Navigation>
 

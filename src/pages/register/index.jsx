@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Container } from "../../components/authenticator/styled";
-import { Form, User, Name, Email, Pass, ConfirmPass } from "./style";
+import { Container } from "../../components/StyledComponents/Container/styled";
+import { ButtonIni } from "../../components/StyledComponents/Button/styled";
+import { Form, Row, Reg } from "../../components/StyledComponents/Forms/styled";
 
 const Register = () => {
   const history = useHistory();
@@ -44,42 +45,57 @@ const Register = () => {
   };
   return (
     <Container>
+      <h1>Cadastro</h1>
       <Form onSubmit={handleSubmit(handleForm)}>
-        <Name>
-          <div></div>
-          <input placeholder="Name" name="name" ref={register}></input>
-          <p style={{ color: "red" }}>{errors.name?.message}</p>
-        </Name>
-        <User>
-          <div></div>
-          <input placeholder="Username" name="user" ref={register}></input>
-          <p style={{ color: "red" }}>{errors.user?.message}</p>
-        </User>
-        <Email>
-          <div></div>
-          <input placeholder="Email" name="email" ref={register}></input>
-          <p style={{ color: "red" }}>{errors.email?.message}</p>
-        </Email>
-        <Pass>
-          <div></div>
-          <input placeholder="Password" name="password" ref={register}></input>
-          <p style={{ color: "red" }}>{errors.password?.message}</p>
-        </Pass>
-        <ConfirmPass>
-          <div></div>
-          <input
-            placeholder="Confirm your password"
-            name="password_confirmation"
-            ref={register}
-          ></input>
-          <p style={{ color: "red" }}>
-            {errors.password_confirmation?.message}
-          </p>
-        </ConfirmPass>
-        <div>
-          <p style={{ color: "red" }}>{errors.user_register?.message}</p>
-          <button type="submit">Register</button>
-        </div>
+        <Reg>
+          <p>{errors.name?.message}</p>
+          <Row>
+            <img src="https://img.icons8.com/ios-glyphs/50/000000/user--v1.png" />
+            <input placeholder="Name" name="name" ref={register}></input>
+          </Row>
+        </Reg>
+        <Reg>
+          <p>{errors.user?.message}</p>
+          <Row>
+            <img src="https://img.icons8.com/fluent-systems-filled/48/000000/user-menu-male.png" />
+            <input placeholder="Username" name="user" ref={register}></input>
+          </Row>
+        </Reg>
+        <Reg>
+          <p>{errors.email?.message}</p>
+          <Row>
+            <img src="https://img.icons8.com/metro/48/000000/email.png" />
+            <input placeholder="Email" name="email" ref={register}></input>
+          </Row>
+        </Reg>
+        <Reg>
+          <p>{errors.password?.message}</p>
+          <Row>
+            <img src="https://img.icons8.com/metro/48/000000/forgot-password.png" />
+            <input
+              placeholder="Password"
+              name="password"
+              ref={register}
+              type="password"
+            ></input>
+          </Row>
+        </Reg>
+        <Reg>
+          <p>{errors.password_confirmation?.message}</p>
+          <Row>
+            <img src="https://img.icons8.com/fluent-systems-filled/48/000000/security-shield-green.png" />
+            <input
+              placeholder="Confirm your password"
+              name="password_confirmation"
+              ref={register}
+              type="password"
+            ></input>
+          </Row>
+        </Reg>
+        <Reg>
+          <p>{errors.user_register?.message}</p>
+          <ButtonIni type="submit">Register</ButtonIni>
+        </Reg>
       </Form>
     </Container>
   );

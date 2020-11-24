@@ -4,19 +4,17 @@ import Login from "../../pages/login";
 import Register from "../../pages/register";
 import MembersArea from "../../pages/users";
 import axios from "axios";
-import { Button } from "../buttonLogout/styled";
-import { Container, Navigation } from "./styled";
+import { Container } from "../StyledComponents/Container/styled";
+import { Navigation } from "../StyledComponents/Navigation/styled";
 
 const Authenticator = () => {
   const [isAuth, setAuth] = useState(undefined);
   const history = useHistory();
-
   useEffect(() => {
     const token = window.localStorage.getItem("authToken");
     if (!token) {
       return setAuth(false);
     }
-
     axios
       .get("http://ka-users-api.herokuapp.com/users", {
         headers: { Authorization: token },
@@ -29,7 +27,6 @@ const Authenticator = () => {
         setAuth(false);
       });
   }, [history, setAuth]);
-
   if (isAuth === undefined) {
     return <div>Loading...</div>;
   }
@@ -37,14 +34,9 @@ const Authenticator = () => {
     return (
       <>
         <Navigation>
-          <Button>
-            <Link to="/register">Cadastro</Link>
-          </Button>
-          <Button>
-            <Link to="/">Login</Link>
-          </Button>
+          <Link to="/register">Cadastro</Link>
+          <Link to="/">Login</Link>
         </Navigation>
-
         <Switch>
           <Route path="/register">
             <Container>

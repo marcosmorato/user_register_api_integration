@@ -1,5 +1,5 @@
 import Feedback from "../feedback";
-import { TableRow } from "../../pages/users/style";
+import { TableRow } from "../StyledComponents/Table/styled";
 
 const FeedbackList = ({ list }) => {
   return list.map(({ id, name, comment, grade }, index) => (
