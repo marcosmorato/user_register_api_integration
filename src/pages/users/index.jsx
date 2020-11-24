@@ -174,16 +174,12 @@ const MembersArea = () => {
               <tbody>
                 <UserList list={currentPage} total={total} />
               </tbody>
-            </Table>
-            <Pagination>
-              <div>Qtd {total}</div>
-              <PaginationButton>
+              <tfoot>
+                <div>Qtd {total}</div>
                 <PaginationItem onClick={setPrevPag}>Previous</PaginationItem>
-
                 <PaginationItem onClick={goToStart}>
                   Volte ao inicio
                 </PaginationItem>
-
                 {pages.map((page, idx, arr) => {
                   if (idx >= startPosition && idx < endPosition) {
                     return (
@@ -197,11 +193,10 @@ const MembersArea = () => {
                     );
                   }
                 })}
-
                 <PaginationItem onClick={setNextPag}>Next</PaginationItem>
                 <PaginationItem onClick={goToEnd}>Go to the end</PaginationItem>
-              </PaginationButton>
-            </Pagination>
+              </tfoot>
+            </Table>
           </Container>
         </Route>
       </Switch>

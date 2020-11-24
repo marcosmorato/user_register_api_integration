@@ -2,9 +2,8 @@ import Feedback from "../feedback";
 
 const FeedbackList = ({ list }) => {
   return list.map(({ id, name, comment, grade }, index) => (
-    <tr>
+    <tr key={index}>
       <Feedback
-        key={index}
         id={id}
         name={name}
         comment={comment}

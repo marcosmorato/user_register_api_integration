@@ -14,35 +14,40 @@ export const Container = styled.div`
 `;
 
 export const Table = styled.table`
-  max-width: 80%;
   width: 80%;
+  height: 80%;
   border: black 2px solid;
   background: whitesmoke;
-  th {
-    padding: 10px;
-    background: #2b2c28;
-  }
   tr {
+    box-sizing: border-box;
+
     background: #2b2c28;
     color: black;
+  }
+  th {
+    box-sizing: border-box;
+    background: #2b2c28;
   }
   tr:hover {
     background: whitesmoke;
     color: black;
   }
   td {
-    padding: 10px;
     color: black;
-    text-align: left;
-    text-align: center;
     border-bottom: 1px solid #bcbcbc;
+  }
+
+  tfoot {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
 export const Pagination = styled.div`
-  max-width: 500px;
   display: flex;
-  width: 500px;
   justify-content: space-between;
 `;
 
