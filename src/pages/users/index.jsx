@@ -84,9 +84,6 @@ const MembersArea = () => {
   const goToPag = (e) => {
     setCurrentPage(users[e]);
     setPosition(e);
-
-    console.log(endPosition - startPosition);
-
     if (
       endPosition - e < 8 &&
       position < users.length - 1 &&
