@@ -1,4 +1,5 @@
 import { useHistory } from "react-router-dom";
+import { Button } from "../../pages/users/style";
 
 const Logout = () => {
   const history = useHistory();
@@ -7,7 +8,7 @@ const Logout = () => {
     history.push("/");
     window.location.reload();
   };
-  return <button onClick={logout}>Logout</button>;
+  return <Button onClick={logout}>Logout</Button>;
 };
 
 export default Logout;

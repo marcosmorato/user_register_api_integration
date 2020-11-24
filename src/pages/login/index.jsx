@@ -3,7 +3,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { StyledLog, Form, User, Pass } from "./styled";
+import { Container } from "../../components/authenticator/styled";
+
+import { Form, User, Pass } from "./styled";
 
 const Login = (props) => {
   const history = useHistory();
@@ -37,7 +39,7 @@ const Login = (props) => {
       );
   };
   return (
-    <StyledLog>
+    <Container>
       <Form onSubmit={handleSubmit(handleForm)}>
         <h1>Login</h1>
         <User>
@@ -60,7 +62,7 @@ const Login = (props) => {
           <button type="submit">Entrar</button>
         </div>
       </Form>
-    </StyledLog>
+    </Container>
   );
 };
 

@@ -3,7 +3,8 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { StyledReg, Form, User, Name, Email, Pass, ConfirmPass } from "./style";
+import { Container } from "../../components/authenticator/styled";
+import { Form, User, Name, Email, Pass, ConfirmPass } from "./style";
 
 const Register = () => {
   const history = useHistory();
@@ -42,7 +43,7 @@ const Register = () => {
       );
   };
   return (
-    <StyledReg>
+    <Container>
       <Form onSubmit={handleSubmit(handleForm)}>
         <Name>
           <div></div>
@@ -80,7 +81,7 @@ const Register = () => {
           <button type="submit">Register</button>
         </div>
       </Form>
-    </StyledReg>
+    </Container>
   );
 };
 

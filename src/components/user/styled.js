@@ -1,17 +1,34 @@
 import styled from "styled-components";
+export const Container = styled.div`
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #0a0b0b;
 
-export const Container = styled.div``;
+  h1 {
+    color: white;
+  }
+`;
 
 export const Table = styled.table`
-  max-width: 1500px;
-  width: 1500px;
-  /* border-collapse: collapse; */
+  max-width: 80%;
+  width: 80%;
   border: black 2px solid;
+  background: whitesmoke;
   th {
     padding: 10px;
-
-    background: #ccc;
-    /* text-align: left; */
+    background: #2b2c28;
+  }
+  tr {
+    background: #2b2c28;
+    color: black;
+  }
+  tr:hover {
+    background: whitesmoke;
+    color: black;
   }
   td {
     padding: 10px;
