@@ -3,9 +3,8 @@ import { Route, Switch, Link, useHistory } from "react-router-dom";
 import Login from "../../pages/login";
 import Register from "../../pages/register";
 import MembersArea from "../../pages/users";
-import { Container, Navigation } from "./styled";
-
 import axios from "axios";
+import { Container, Navigation } from "./styled";
 
 const Authenticator = () => {
   const [isAuth, setAuth] = useState(undefined);
@@ -38,17 +37,10 @@ const Authenticator = () => {
       <Container>
         <Navigation>
           <div>
-            <Link
-              style={{ textDecoration: "none", color: "white" }}
-              to="/register"
-            >
-              Cadastro
-            </Link>
+            <Link to="/register">Cadastro</Link>
           </div>
           <div>
-            <Link style={{ textDecoration: "none", color: "white" }} to="/">
-              Login
-            </Link>
+            <Link to="/">Login</Link>
           </div>
         </Navigation>
         <Switch>
@@ -63,16 +55,14 @@ const Authenticator = () => {
     );
   }
   return (
-    <Container>
-      <Switch>
-        <Route exact path="/">
-          <Login setAuth={setAuth}></Login>
-        </Route>
-        <Route path="/users">
-          <MembersArea />
-        </Route>
-      </Switch>
-    </Container>
+    <Switch>
+      <Route exact path="/">
+        <Login setAuth={setAuth}></Login>
+      </Route>
+      <Route path="/users">
+        <MembersArea />
+      </Route>
+    </Switch>
   );
 };
 
