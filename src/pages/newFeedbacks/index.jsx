@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { Main, Form, Name, Comment, Grade } from "./styled";
 
 const NewFeedbacks = () => {
   const { userId } = useParams();
@@ -37,9 +38,9 @@ const NewFeedbacks = () => {
       });
   };
   return (
-    <>
-      <form onSubmit={handleSubmit(handleForm)}>
-        <div>
+    <Main>
+      <Form onSubmit={handleSubmit(handleForm)}>
+        <Name>
           Nome:
           <input
             placeholder="What's your name?"
@@ -47,8 +48,8 @@ const NewFeedbacks = () => {
             ref={register}
           ></input>
           <p style={{ color: "red" }}>{errors.name?.message}</p>
-        </div>
-        <div>
+        </Name>
+        <Comment>
           Comment:
           <input
             placeholder="tell me your history"
@@ -56,8 +57,8 @@ const NewFeedbacks = () => {
             ref={register}
           ></input>
           <p style={{ color: "red" }}>{errors.comment?.message}</p>
-        </div>
-        <div>
+        </Comment>
+        <Grade>
           Grade:
           <input
             placeholder="what grade do you give me?"
@@ -66,13 +67,13 @@ const NewFeedbacks = () => {
             ref={register}
           ></input>
           <p style={{ color: "red" }}>{errors.grade?.message}</p>
-        </div>
+        </Grade>
         <button type="submit">enviar</button>
-      </form>
+      </Form>
       <button onClick={() => history.push(`/users/${userId}/feedbacks`)}>
         Go back
       </button>
-    </>
+    </Main>
   );
 };
 
