@@ -3,6 +3,8 @@ import { Route, Switch, Link, useHistory } from "react-router-dom";
 import Login from "../../pages/login";
 import Register from "../../pages/register";
 import MembersArea from "../../pages/users";
+import { Container, Navigation } from "./styled";
+
 import axios from "axios";
 
 const Authenticator = () => {
@@ -61,14 +63,16 @@ const Authenticator = () => {
     );
   }
   return (
-    <Switch>
-      <Route exact path="/">
-        <Login setAuth={setAuth}></Login>
-      </Route>
-      <Route path="/users">
-        <MembersArea />
-      </Route>
-    </Switch>
+    <Container>
+      <Switch>
+        <Route exact path="/">
+          <Login setAuth={setAuth}></Login>
+        </Route>
+        <Route path="/users">
+          <MembersArea />
+        </Route>
+      </Switch>
+    </Container>
   );
 };
 
