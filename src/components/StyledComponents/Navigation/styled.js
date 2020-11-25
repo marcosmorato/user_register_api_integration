@@ -9,6 +9,9 @@ export const Navigation = styled.nav`
   align-items: center;
   padding: 10px;
   background: #2b2c28;
+  @media (max-width: 768px) {
+    position: fixed;
+  }
 
   a {
     cursor: pointer;
@@ -24,9 +27,14 @@ export const Navigation = styled.nav`
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  a:hover {
-    color: whitesmoke;
-    background: #0a0b0b;
+
+    :hover {
+      color: whitesmoke;
+      background: #0a0b0b;
+    }
+    @media (max-width: 768px) {
+      width: 20%;
+      font-size: 1em;
+    }
   }
 `;

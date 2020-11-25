@@ -1,12 +1,19 @@
 import styled from "styled-components";
 
 export const Table = styled.table`
-  width: 80%;
-  height: 70%;
+  box-sizing: border-box;
+  width: 50%;
+  height: 50%;
   background: whitesmoke;
   color: Black;
   text-align: center;
   border-radius: 10px;
+  word-break: break-word;
+
+  @media (max-width: 768px) {
+    width: 95%;
+    height: 70%;
+  }
 `;
 
 export const TableRow = styled.tr`
@@ -16,6 +23,10 @@ export const TableRow = styled.tr`
   th {
     background: #0a0b0b;
     border-radius: 5px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
   }
 `;
 
@@ -27,9 +38,14 @@ export const TableCell = styled.td`
     background: black;
     color: white;
   }
+
+  @media (max-width: 768px) {
+    font-size: 0.8em;
+  }
 `;
 
 export const TableFooter = styled.div`
+  box-sizing: border-box;
   width: 80%;
   height: 10%;
   border-radius: 10px;
@@ -38,6 +54,13 @@ export const TableFooter = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 768px) {
+    width: 95%;
+    height: 10%;
+    flex-wrap: wrap;
+    background: whitesmoke;
+  }
 `;
 
 export const Pagination = styled.div`
@@ -50,6 +73,12 @@ export const Pagination = styled.div`
   div {
     font-weight: bold;
   }
+
+  @media (max-width: 768px) {
+    font-size: 0.7em;
+
+    flex-direction: column-reverse;
+  }
 `;
 
 export const PaginationButton = styled.div`
@@ -57,6 +86,10 @@ export const PaginationButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+  }
 `;
 export const PaginationItem = styled.div`
   cursor: pointer;

@@ -12,9 +12,9 @@ export const Form = styled.form`
   align-items: center;
   justify-content: center;
 
-  h1 {
-    font-size: 250%;
-    margin-top: 0px;
+  @media (max-width: 768px) {
+    width: 90%;
+    height: 50%;
   }
 `;
 
@@ -26,6 +26,9 @@ export const Reg = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media (max-width: 768px) {
+    height: 23%;
+  }
 
   p {
     box-sizing: border-box;

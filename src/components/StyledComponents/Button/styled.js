@@ -39,6 +39,12 @@ export const ButtonGo = styled.button`
     background: #0a0b0b;
     color: whitesmoke;
   }
+
+  @media (max-width: 768px) {
+    width: 80%;
+    height: 80%;
+    font-size: 0.7em;
+  }
 `;
 
 export const ButtonNew = styled.button`
@@ -61,6 +67,10 @@ export const ButtonNew = styled.button`
     cursor: pointer;
     background: #0a0b0b;
     color: whitesmoke;
+  }
+
+  @media (max-width: 768px) {
+    width: 50%;
   }
 `;
 
@@ -85,6 +95,10 @@ export const ButtonBack = styled.button`
     background: whitesmoke;
     color: #0a0b0b;
     border: 2px solid #0a0b0b;
+  }
+
+  @media (max-width: 768px) {
+    width: 25%;
   }
 `;
 

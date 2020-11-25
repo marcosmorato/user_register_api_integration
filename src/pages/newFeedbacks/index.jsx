@@ -48,6 +48,7 @@ const NewFeedbacks = () => {
       <h1>Novo Feedback</h1>
       <Form onSubmit={handleSubmit(handleForm)}>
         <Reg>
+          <p>{errors.name?.message}</p>
           <Row>
             <img src="https://img.icons8.com/ios-glyphs/50/000000/user--v1.png" />{" "}
             <input
@@ -56,9 +57,9 @@ const NewFeedbacks = () => {
               ref={register}
             ></input>
           </Row>
-          <p>{errors.name?.message}</p>
         </Reg>
         <Reg>
+          <p>{errors.comment?.message}</p>
           <Row>
             <img src="https://img.icons8.com/ios/50/000000/send-comment.png" />{" "}
             <input
@@ -67,9 +68,9 @@ const NewFeedbacks = () => {
               ref={register}
             ></input>
           </Row>
-          <p>{errors.comment?.message}</p>
         </Reg>
         <Reg>
+          <p>{errors.grade?.message}</p>
           <Row>
             <img src="https://img.icons8.com/ios-filled/50/000000/grades.png" />{" "}
             <input
@@ -79,7 +80,6 @@ const NewFeedbacks = () => {
               ref={register}
             ></input>
           </Row>
-          <p style={{ color: "red" }}>{errors.grade?.message}</p>
         </Reg>
         <ButtonSend type="submit">Send</ButtonSend>
       </Form>
