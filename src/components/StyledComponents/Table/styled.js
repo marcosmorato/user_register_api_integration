@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Table = styled.table`
   box-sizing: border-box;
-  width: 80%;
+  width: 90%;
   height: 70%;
   background: whitesmoke;
   color: Black;
@@ -10,7 +10,7 @@ export const Table = styled.table`
   border-radius: 10px;
   word-break: break-word;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     width: 95%;
     height: 70%;
   }
@@ -46,7 +46,7 @@ export const TableCell = styled.td`
 
 export const TableFooter = styled.div`
   box-sizing: border-box;
-  width: 80%;
+  width: 90%;
   height: 10%;
   border-radius: 10px;
   background: whitesmoke;
@@ -55,7 +55,7 @@ export const TableFooter = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     width: 95%;
     height: 10%;
     flex-wrap: wrap;
@@ -74,7 +74,7 @@ export const Pagination = styled.div`
     font-weight: bold;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     font-size: 0.7em;
 
     flex-direction: column-reverse;
